@@ -79,11 +79,11 @@ podTemplate(
 
         // TBD: Build Image, tag Image
         dir('target') {
-          sh("oc start-build tasks --from-dir=. --follow -n ${GUID}-task-dev")
+          sh("oc start-build tasks --from-dir=. --follow -n ${GUID}-tasks-dev")
         }
         script {
           openshift.withCluster() {
-            openshift.withProject("${GUID}-task-dev") {
+            openshift.withProject("${GUID}-tasks-dev") {
               openshift.tag("tasks:latest", "tasks:${devTag}")
             }
           }
