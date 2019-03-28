@@ -78,6 +78,16 @@ podTemplate(
         echo "Building OpenShift container image tasks:${devTag}"
 
         // TBD: Build Image, tag Image
+        dir('target') {
+          sh("oc start-build tasks --from-dir=. --follow -n ${GUID}-task-dev")
+        }
+        script {
+          openshift.withCluster() {
+            openshift.withProject("${GUID}-task-dev") {
+              openshift.tag("tasks:latest", "tasks:${devTag}")
+            }
+          }
+        }
       }
 
       // Deploy the built image to the Development Environment.
