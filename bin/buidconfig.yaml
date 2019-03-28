@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: tasks
+  name: tasks
+spec:
+  source:
+    git:
+      ref: master
+      uri: https://github.com/fdammeke/advdev_homework_template.git
+    contextDir: 'openshift-tasks'
+  strategy:
+    jenkinsPipelineStrategy:
+        jenkinsfilePath: Jenkinsfile
+        env:
+          - name: "GUID"
+            value: "4221"
+          - name: "REPO"
+            value: "https://github.com/fdammeke/advdev_homework_template.git"
+          - name: "CLUSTER"
+            value: "na311.openshift.opentlc.com"
+  type: JenkinsPipeline
