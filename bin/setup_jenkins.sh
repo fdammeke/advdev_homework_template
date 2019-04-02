@@ -39,8 +39,8 @@ items:
       jenkinsPipelineStrategy:
         jenkinsfilePath: Jenkinsfile
         env:
-        - name: GUID
-          value: ${GUID}
+        - name: "GUID"
+          value: "${GUID}"
         - name: "REPO"
           value: "${REPO}"
         - name: "CLUSTER"
