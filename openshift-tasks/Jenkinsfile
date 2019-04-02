@@ -152,10 +152,10 @@ podTemplate(
             }
 
             echo "Deploying ${destApp}"
-            sh("oc rollout pause dc/${destApp}")
+            sh("oc rollout pause dc/${destApp} -n ${GUID}-tasks-prod")
             sh("oc set image dc/${destApp} ${destApp}=docker-registry.default.svc.cluster.local:5000/${GUID}-tasks-dev/tasks:${prodTag} --source=docker -n ${GUID}-tasks-prod")
             sh("oc set env dc/${destApp} VERSION='${prodTag} (${destApp})' -n ${GUID}-tasks-prod")
-            sh("oc rollout resume dc/${destApp}")
+            sh("oc rollout resume dc/${destApp} -n ${GUID}-tasks-prod")
 
             openshiftDeploy depCfg: destApp, namespace: "${GUID}-tasks-prod", verbose: 'false', waitTime: '', waitUnit: 'sec'
             openshift.withCluster() {
