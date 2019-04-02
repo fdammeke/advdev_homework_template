@@ -24,6 +24,12 @@ podTemplate(
       checkout scm
     }
 
+    dir('bin') {
+      stage('Create build pipeline') {
+        echo "Creating build pipeline in Jenkins"
+        sh("oc create -f buildconfig.yaml")
+      }
+    }
     // Build the Tasks Service
     dir('openshift-tasks') {
       // The following variables need to be defined at the top level
