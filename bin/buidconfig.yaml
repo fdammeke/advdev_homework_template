@@ -2,8 +2,8 @@ apiVersion: v1
 kind: BuildConfig
 metadata:
   labels:
-    app: tasks
-  name: tasks
+    app: tasks-pipeling
+  name: tasks-pipeline
 spec:
   source:
     git:
