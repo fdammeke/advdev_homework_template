@@ -166,6 +166,7 @@ podTemplate(
                 }
             }
             openshiftVerifyService namespace: "${GUID}-tasks-prod", svcName: destApp, verbose: 'false'
+        }
       }
 
       stage('Switch over to new Version') {
